@@ -1,20 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Publicaciones
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list *ngIf="listaPublicaciones.length">
+    <ion-item *ngFor="let publi of listaPublicaciones">
+      <ion-thumbnail slot="start">
+        <img [src]="publi.foto">
+      </ion-thumbnail>
+      <ion-toolbar>
+        <ion-label>
+          <h1>{{publi.titulo}}</h1>
+          <h2>{{formatearFecha(publi.fecha)}}</h2>
+        </ion-label>
+        <ion-button slot="end" fill="solid" color="light" (click)="borrarPublicacion(publi)">
+          🗑️
+        </ion-button>
+      </ion-toolbar>
+    </ion-item>
+  </ion-list>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button routerLink="/publicacion-form" style="position: fixed; bottom: 20px; right: 20px;">
+    +
+  </ion-button>
 </ion-content>
